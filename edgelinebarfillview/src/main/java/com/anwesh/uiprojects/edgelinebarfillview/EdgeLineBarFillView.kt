@@ -34,8 +34,8 @@ fun Float.sinify() : Float = Math.sin(this * Math.PI).toFloat()
 
 fun Canvas.drawEdgeLineBarFill(scale : Float, w : Float, h : Float, paint : Paint) {
     val sf : Float = scale.sinify()
-    val sf1 : Float = sf.divideScale(0, parts + 1)
-    val sf2 : Float = sf.divideScale(1, parts + 1)
+    val sf1 : Float = sf.divideScale(0, parts * 2)
+    val sf2 : Float = sf.divideScale(2, parts  * 2)
     val size : Float = w / sizeFactor
     save()
     translate(w / 2, h / 2)
