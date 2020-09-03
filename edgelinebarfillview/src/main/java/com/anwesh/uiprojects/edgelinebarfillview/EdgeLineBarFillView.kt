@@ -209,6 +209,14 @@ class EdgeLineBarFillView(ctx : Context) : View(ctx) {
                 animator.start()
             }
         }
+    }
 
+    companion object {
+
+        fun create(activity : Activity) : EdgeLineBarFillView {
+            val view : EdgeLineBarFillView = EdgeLineBarFillView(activity)
+            activity.setContentView(view)
+            return view
+        }
     }
 }
