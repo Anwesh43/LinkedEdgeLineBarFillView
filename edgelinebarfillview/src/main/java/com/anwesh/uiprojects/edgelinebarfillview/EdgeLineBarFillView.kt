@@ -185,4 +185,28 @@ class EdgeLineBarFillView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : EdgeLineBarFillView) {
+
+        private val animator : Animator = Animator(view)
+        private val elbf : EdgelineBarFill = EdgelineBarFill(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            elbf.draw(canvas, paint)
+            animator.animate {
+                elbf.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            elbf.startUpdating {
+                animator.start()
+            }
+        }
+
+    }
 }
