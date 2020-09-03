@@ -121,4 +121,45 @@ class EdgeLineBarFillView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class ELBFNode(var i : Int, val state : State = State()) {
+
+        private var next : ELBFNode? = null
+        private var prev : ELBFNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = ELBFNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawELBFNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : ELBFNode {
+            var curr : ELBFNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
