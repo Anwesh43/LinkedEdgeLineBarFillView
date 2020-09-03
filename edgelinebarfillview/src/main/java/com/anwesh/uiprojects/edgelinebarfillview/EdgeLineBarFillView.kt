@@ -58,3 +58,19 @@ fun Canvas.drawELBFNode(i : Int, scale : Float, paint : Paint) {
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     drawEdgeLineBarFill(scale, w, h, paint)
 }
+
+class EdgeLineBarFillView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
